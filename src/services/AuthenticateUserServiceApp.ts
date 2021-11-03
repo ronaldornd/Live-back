@@ -18,7 +18,7 @@ class AuthenticateUserServiceApp {
     async execute(code:string){
         const url = "https://github.com/login/oauth/access_token";
 
-        const {data: accessTokenResponse} = await axios.post<IaccesTokenResponse>(url,null,{
+        const {data: accessTokenResponse} = await axios.post<IaccesTokenResponse>( url , null ,{
             params: {
                 client_id: process.env.CLIENT_ID_NATIVE,
                 client_secret: process.env.CLIENT_SECRET_NATIVE,
@@ -27,7 +27,7 @@ class AuthenticateUserServiceApp {
             headers: {
                 "accept": "application/json"
             }
-            
+        
         })
         console.log({data: accessTokenResponse});
         const response = await axios.get<IUserResponse>("https://api.github.com/user",{
